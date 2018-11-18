@@ -1,0 +1,86 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: url(../img/back_4.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.login-box{
+	clear: both;
+	width: 280px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+}
+.login-box h1{
+	float: left;
+	text-align: center;
+	font-size: 50px;
+	border-bottom: 5px solid #89d0ea;
+	margin-bottom: 50px;
+	padding: 13px 0px;
+}
+.login-box p{
+	text-align:center;
+}
+a:link, a:visited  {
+    color: #9e12cc;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: #8fef81;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
+.textbox{
+	width: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding: 8px 0px;
+	margin:  8px 0px;
+	border-bottom: 1px solid #89d0ea;
+}
+
+i.fa.fa-ticket {
+    color: #b07e3b;
+}
+.textbox i{
+	width: 30px;
+	float: left;
+	text-align: center;
+}
+i#re_p {
+    color: orangered;
+}
+.fa .fa-ticket{
+	    color: #b07e3b;
+}
+.textbox input{
+	border: none;
+	background: none;
+	outline: none;
+	color: white;
+	font-size: 16px;
+	width: 170px;
+	float: left;
+	margin: 0 10px;
+}
+.btn{
+	width: 100%;
+	background: none;
+	border: 2px solid #89d0ea;
+	color: white;
+	padding: 5px;
+	cursor: pointer;
+	margin:12px 0px;
+}

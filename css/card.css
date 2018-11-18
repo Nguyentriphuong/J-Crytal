@@ -1,0 +1,108 @@
+ @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+ *{
+	padding: 0;
+	margin: 0;
+	font-family: "Cambria Math";
+	list-style: none;
+	text-decoration: none;
+}
+body{
+	background: #b5b7c3;
+}
+
+
+.card{
+	width: 800px;
+	height: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #f1f1f1;
+	transform: translate(-50%,-50%);
+	overflow: auto;
+	padding: 10px;
+	border: 2px solid #16dee5;
+	box-shadow: 0px 0px 20px black;
+}
+.card-header{
+	height: 400px;
+	overflow: hidden;
+	vertical-align:top;
+	position: relative;
+	border-radius: 5px;
+
+} 
+
+.card-header .cover{
+	height: 400px;
+	background-color: black;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.card-header .menu{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: flex;
+	align-items: center;
+	color: #45044d;
+	opacity: 0.7;
+	font-size: 30px;
+	cursor: pointer;
+}
+.card-header .name{
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	color: white;
+}
+.first{
+	font-size: 36px;
+	display: block;
+}
+.last{
+	display: block;
+	font-size:  48px;
+}
+/*phÃ¡ÂºÂ§n nÃ¡Â»â„¢i dung dÃ†Â°Ã†Â¡i*/
+.container {
+	text-align: center;
+	position: relative;
+	padding-top: 8.5px;
+}
+#list-main{
+	position: absolute;
+	top: 20px;
+}
+.container ul {
+	list-style-type: none;
+}
+.container ul li{
+	list-style-type:  none;
+	display: block;
+	color: white;
+	font-family: Raleway;
+	padding: 10px 50px;
+}
+.container table th{
+	background: #4CAF50;
+	border-radius: 4px;
+	color: #f1f1f1;
+	size: 1000px;
+	padding: 10px 10px;
+	border-radius: 100px;
+	border: 0px;
+}
+
+.container table th:hover {
+    color: antiquewhite;
+    background: #9C27B0;
+}
+.container table td {
+    color: #c840e9;
+    padding: 7px;
+    border: 0px;
+}
+
