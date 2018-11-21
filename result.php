@@ -20,7 +20,7 @@ include("variable.php");
 <!-- <div id="card"">
  -->        <div class="card-header" >
 
-           <div class="cover" style="background-image: url(img/user.jpg);"></div>
+           <div class="cover" style="background-image: url(<?php echo "$img"; ?>);"></div>
           <!--  <div class="close">
                <i class="fa fa-times-circle" aria-hidden="true" id="icon_x"></i>   
            </div> -->

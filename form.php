@@ -85,7 +85,7 @@
 	$Name = $firstname." ".$lastname;
 	?>
 	<div id="form">
-	<form action="" method="POST">
+	<form action="" method="POST" enctype="multipart/form-data">
 		<div id="ttlh">
 			<h3>Thông tin liên hệ</h3>
 			<label for="name">Họ và tên</label>: <input type="text" id="name" name="name" placeholder="Nhập họ tên" value= '<?php echo "$Name"; ?>' onblur="javascript: this.value = ChuanhoaTen(this.value);"> 
@@ -96,7 +96,8 @@
 			<label for="male">Nam</label>: <input type="radio" id="male" name="sex" value="1" <?php if ($sex == 'Nam') {echo "checked";} ?>>
 			<label for="female">Nữ</label>: <input type="radio" id="female" name="sex" value="0" <?php if ($sex == 'Nữ') {echo "checked";} ?> ><br>
 			<span class="erorr"  id="erorr-sex"></span><br>
-			<label for="img">Ảnh</label>: <input type="file" id="img" name="img" > <br> 
+			<label for="img">Ảnh</label>: <input type="file" id="img" name="img" value='<?php echo "$img" ?>'> <br> 
+			<span class="erorr" id="erorr-img"></span><br>
 			<label for="phone">Điện thoại</label>: <input type="tel" id="phone" name="phone" placeholder="Số điện thoại" value='<?php echo "$phone"; ?>'> 
 			<span class="erorr"  id="erorr-phone"></span><br>
 			<label for="email">Email</label>: <input type="text" id="email" name="email" placeholder="Email" value='<?php echo "$Email"; ?>'> 
@@ -154,7 +155,7 @@
 			<h3>Quá trình công tác</h3>
 			<div id="1">
 				<label for="business">Nơi làm viêc</label>: <input type="text" id="business" name="business" value='<?php echo "$office"; ?>'> <br>
-				<span class="erorr"  id="erorr-business"></span>
+				<span class="erorr"  id="erorr-business"></span><br>
 				<label for="type">Hình thức:</label>
 				
 				<select name="type" id="type">
@@ -163,7 +164,7 @@
 					<option value="Nhà nước" <?php if ($type == "Nhà nước") {echo 'selected';} ?>>Nhà nước</option>
 					<option value="Nước ngoài" <?php if ($type == "Nước ngoài") {echo 'selected';} ?>>Nước ngoài</option>
 				</select>
-				<span class="erorr"  id="erorr-type"></span>
+				<span class="erorr"  id="erorr-type"></span><br>
 				<span>Công việc theo chuyên ngành: </span>
 				<label for="yes">Phải</label>: <input type="radio" id="yes" name="Y_or_N" value="1" <?php if ($true_work == '1') {echo "checked";} ?>>
 				<label for="no">Không phải</label>: <input type="radio" id="no" name="Y_or_N" value="0" <?php if ($true_work == '0') {echo "checked";} ?> >
@@ -203,62 +204,63 @@
 		$time_end = isset($_POST['time_end']) ? $_POST['time_end'] : '';
 		$pos = isset($_POST['pos']) ? $_POST['pos'] : '';
 		$salary = isset($_POST['salary']) ? $_POST['salary'] : '';
-
+		$n = 0;
 
 
 		if (isset($_POST['submit'])) {
-			echo " chya dong nay $name $d_b $email $course $class $time_edu $type $business $time_begin $time_end $pos $salary";
-			$n = 0;
+			// echo " chya dong nay $name $d_b $email $course $class $time_edu $type $business $time_begin $time_end $pos $salary";
+			
 			if ($name == '') {
 				$n = 1;
-				erorr('name');
+				erorr('name','Bạn nhập thiểu thông tin ở đây');
 			}
+
 			if ($d_b == '') {
 				$n = 1;
-				erorr('d_b');
+				erorr('d_b','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($email == '') {
 				$n = 1;
-				erorr('email');
+				erorr('email','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($course == '') {
 				$n = 1;
-				erorr('course');
+				erorr('course','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($class == '') {
 				$n = 1;
-				erorr('class');
+				erorr('class','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($time_edu == '') {
 				$n = 1;
-				erorr('time_edu');
+				erorr('time_edu','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($type == '') {
 				$n = 1;
-				erorr('type');
+				erorr('type','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($business == '') {
 				$n = 1;
-				erorr('business');
+				erorr('business','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($time_begin == '') {
 				$n = 1;
-				erorr('time_begin');
+				erorr('time_begin','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($pos == '') {
 				$n = 1;
-				erorr('pos');
+				erorr('pos','Bạn nhập thiểu thông tin ở đây');
 			}
 			if ($salary == '') {
 				$n = 1;
-				erorr('salary');
+				erorr('salary','Bạn nhập thiểu thông tin ở đây');
 			}
-			/*if (emailValid($email)) {
+			if (!emailValid($email)) {
 				$n=1;
-				erorremail($email);
+				erorr('email','Warning: Nhập email sai mẫu Example@gmail.com');
 
-			}*/
-			echo "<br>$n";
+			}
+			// echo "<br>$n";
 			//
 		
 				
@@ -273,13 +275,12 @@
 
 					if ($num_row1 == 0){
 						// Thêm lớp trong niêm khóa có sẵn
-						$r1 = mysqli_fetch_array ($que2);
+						$r1 = mysqli_fetch_array ($query1);
 						$stt1 = $r1['course_id'];
 						$s2 = "SELECT * FROM lop ORDER BY class_id DESC LIMIT 1";
 						$q2 = mysqli_query($link,$s2);
 						$r2 = mysqli_fetch_array ($q2);
 						$stt2 = $r2['class_id'] + 1;
-						echo "$stt2 $class $stt1";
 						$tb_lop = "INSERT INTO lop (class_id, class_name, course_id) VALUES ('$stt2', '$class', '$stt1')";
 						$query2 = mysqli_query($link,$tb_lop);
 						
@@ -357,18 +358,71 @@
 				$query6 = mysqli_query($link,$tb_lop);
 				$temp_array =  mysqli_fetch_array($query6);
 				$id_class = $temp_array['class_id'];
+				// lấy tên file upload
+				$image=$_FILES['img']['name'];
+				// Nếu nó không rỗng
+				if ($image)
+				{
+					// Lấy tên gốc của file
+					// echo "co nha";
+					$image=$_FILES['img']['name'];
+					echo "$image <br>";
+					$filename = stripslashes($_FILES['img']['name']);
+					//Lấy phần mở rộng của file
+					$extension = getExtension($filename);
+					$extension = strtolower($extension);
+					// Nếu nó không phải là file hình thì sẽ thông báo lỗi
+					if (($extension != "jpg") && ($extension != "jpeg") && ($extension !=
+					"png") && ($extension != "gif"))
+					{
+						// xuất lỗi ra màn hình
+						erorr('img','Bạn nhập thiểu thông tin ở đây');
+						// echo '<h1>Đây không phải là file hình!</h1>';
+						$n=1;
+					}
+					else
+					{
+						// đặt tên mới cho file hình up lên
+						$image_name=$id_active.'.'.$extension;
+						//$image_name = 'tenmoi'.'.'.$extension;
+						// gán thêm cho file này đường dẫn
+						$newname="images/".$image_name;
+						$x = $_FILES['img']['tmp_name'];
+						// kiểm tra xem file hình này đã upload lên trước đó chưa
+						$copied = move_uploaded_file($_FILES['img']['tmp_name'], $newname);
+						if (!$copied)
+						{
+						// echo '<h1> File hình này đã tồn tại </h1>';
+						$n=1;
+						}
+						else{
+							$query7 =  mysqli_query($link, "UPDATE cuu_sv SET img = '$newname' WHERE cuu_sv.student_id = '$id_active' ");
+						}
+						
+					}
+				}
+				
 				// thêm sv 
-				$tb_sv = "UPDATE cuu_sv SET name = '$name', class_id = '$id_class', birthday = '$d_b', sex = '$sex', phone = '$phone', Email = '$email', district_id = '$district' WHERE cuu_sv.student_id = '$id_active'";
+				$tb_sv = "UPDATE cuu_sv SET name = '$name', class_id = '$id_class', birthday = '$d_b', sex = '$sex', phone = '$phone', Email = '$email' ,district_id = '$district' WHERE cuu_sv.student_id = '$id_active'";
 				$query7 = mysqli_query($link,$tb_sv);
+			// echo "<h1> lop $class $course</h1>";	
 			if ($n == 0) {
 				echo "<script>"; 
 				echo 'myWindow = window.open("index.php", "_self");';
 				echo "</script>";
 			}
 			else{
-				echo "<script>alert('Bạn nhập thiếu thông tin!');</script>";
+				echo "<script>alert('Bạn nhập thiếu hoặc sai thông tin!');</script>";
 			}
 			
+		}
+		// include("images.php");
+		function getExtension($str) {
+			$i = strrpos($str,".");
+			if (!$i) { return ""; }
+			$l = strlen($str) - $i;
+			$ext = substr($str,$i+1,$l);
+			return $ext;
 		}
 		function emailValid($string) 
 	    { 
@@ -376,30 +430,13 @@
 	            return true; 
 	    }
 
-		function erorr($value)
+		function erorr($id, $value)
 		{	
 			echo "<script>"; 
-			echo 'document.getElementById("erorr-'.$value.'").innerHTML = "Bạn nhập thiểu thông tin ở đây";';
+			echo 'document.getElementById("erorr-'.$id.'").innerHTML = "'.$value.'";';
 			echo "</script>";
 		}
-		function erorremail($email)
-		{	
-			echo "<script>"; 
-			echo 'document.getElementById("erorr-'.$email.'").innerHTML = "Warning: Nhập email sai mẫu Example@gmail.com";';
-			echo "</script>";
-		}
+		
 	?>
-	<!-- <script>
-		var t=1;
-		function change_id_temp(){
-			t = t+1;
-			document.getElementById("temp").id = t ;
-
-		}
-		var temp = document.getElementById("temp").id;
-		if (temp=="temp") {
-			change_id_temp();
-		}
-	</script> -->
 </body>
 </html>

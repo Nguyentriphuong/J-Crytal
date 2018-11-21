@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 18, 2018 lúc 08:40 PM
+-- Thời gian đã tạo: Th10 21, 2018 lúc 11:03 AM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -43,13 +43,13 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id`, `name`, `password`, `student_id`, `active`) VALUES
 (1, 'admin', '1abfbae9bb8234df2886c310d070370d', 1, 0),
-(2, 'phuong', '1abfbae9bb8234df2886c310d070370d', 2, 1),
+(2, 'phuong', '1abfbae9bb8234df2886c310d070370d', 2, 0),
 (3, 'tung', '1abfbae9bb8234df2886c310d070370d', 3, 0),
 (4, 'quan', '1abfbae9bb8234df2886c310d070370d', 4, 0),
 (5, 'Nga', '1abfbae9bb8234df2886c310d070370d', 5, 0),
 (6, 'tuan', '1abfbae9bb8234df2886c310d070370d', 6, 0),
 (7, 'Hương', '1abfbae9bb8234df2886c310d070370d', 7, 0),
-(8, 'Anh', '1abfbae9bb8234df2886c310d070370d', 8, 0);
+(8, 'Anh', '1abfbae9bb8234df2886c310d070370d', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,8 @@ INSERT INTO `congtac` (`congtacid`, `student_id`, `office_id`, `time_begin`, `ti
 (3, 3, 1, '2017-07-01', '2018-08-01', 'Giám Đốc', 10000, 1),
 (4, 5, 4, '2018-11-01', '2018-11-02', 'Trưởng Phòng', 2000, 1),
 (5, 6, 1, '2018-07-01', '2018-08-01', 'Giám Đốc', 100000, 0),
-(6, 7, 1, '2018-07-01', '2018-07-01', 'Trưởng Phòng', 10000, 1);
+(6, 7, 1, '2018-07-01', '2018-07-01', 'Trưởng Phòng', 10000, 1),
+(7, 8, 4, '2017-01-01', '2018-01-01', 'Trưởng Phòng', 9000, 0);
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,7 @@ CREATE TABLE `cuu_sv` (
   `sex` tinyint(1) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `img` longblob NOT NULL,
+  `img` varchar(255) NOT NULL,
   `district_id` varchar(5) NOT NULL,
   `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -127,12 +128,13 @@ CREATE TABLE `cuu_sv` (
 
 INSERT INTO `cuu_sv` (`student_id`, `name`, `class_id`, `birthday`, `sex`, `phone`, `Email`, `img`, `district_id`, `active`) VALUES
 (1, '', 0, '0000-00-00', 0, '', '', '', '0', 0),
-(2, 'Nguyễn Trí Phương', 1, '1997-07-21', 1, '12345', 'Nguyentriphuong2107@gmail.com', '', '394', 0),
-(3, 'Nguyễn Quang Tùng', 2, '1997-02-15', 1, '0346746851', 'aaa@gmail.com', '', '076', 0),
-(4, 'Lê Anh Tùng', 1, '1997-07-15', 1, '0346746851', '0926853515', '', '040', 0),
-(5, ' Lê Thị  Nga', 3, '1997-09-28', 1, '08412345678', 'Lethinga@gmail.com', '', '003', 0),
-(6, ' Bùi Anh Tuấn', 2, '1997-08-21', 1, '123456788', '123456789', '', '072', 0),
-(7, ' Nguyễn Quỳnh Hương', 4, '1997-11-11', 0, '0123', '0123', '', '005', 0);
+(2, 'Nguyễn Trí Phương', 1, '1997-07-21', 1, '12345', 'Nguyentriphuong2107@gmail.com', 'images/2.jpg', '394', 0),
+(3, 'Nguyễn Quang Tùng', 2, '1997-02-15', 1, '0346746851', 'Nguyentriphuong2107@gmail.com', 'images/3.jpg', '076', 0),
+(4, 'Lê Anh Tùng', 1, '1997-07-15', 1, '0346746851', 'leanhtung@gmail.com', 'images/4.jpg', '040', 0),
+(5, ' Lê Thị  Nga', 3, '1997-09-28', 0, '08412345678', 'Lethinga@gmail.com', 'images/5.jpg', '003', 0),
+(6, ' Bùi Anh Tuấn', 2, '1997-08-21', 1, '123456788', 'tuan@gmail.com', 'images/6.jpg', '072', 0),
+(7, ' Nguyễn Quỳnh Hương', 4, '1997-11-11', 0, '0123', 'Huong97@gmail.com', 'images/7.jpg', '005', 0),
+(8, 'Lê Thị Minh Anh', 5, '1996-07-11', 0, '0346746851', 'MAnh@gmail.com', 'images/8.jpg', '070', 0);
 
 -- --------------------------------------------------------
 
@@ -893,7 +895,8 @@ INSERT INTO `lop` (`class_id`, `class_name`, `course_id`) VALUES
 (1, 'CB', 1),
 (2, 'CLC', 2),
 (3, 'CAC', 3),
-(4, 'CLC', 1);
+(4, 'CLC', 1),
+(5, 'CA', 2);
 
 -- --------------------------------------------------------
 
@@ -12197,31 +12200,31 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `congtac`
 --
 ALTER TABLE `congtac`
-  MODIFY `congtacid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `congtacid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `coquan`
 --
 ALTER TABLE `coquan`
-  MODIFY `office_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `office_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `cuu_sv`
 --
 ALTER TABLE `cuu_sv`
-  MODIFY `student_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `student_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `course_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `course_id` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `lop`
 --
 ALTER TABLE `lop`
-  MODIFY `class_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `class_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

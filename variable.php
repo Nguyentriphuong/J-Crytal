@@ -2,7 +2,7 @@
 	
 
 	$tb_sv = mysqli_query($link, "SELECT LEFT(name,LOCATE(' ', name)-1) as first, RIGHT(name,CHAR_LENGTH(name)-LOCATE(' ', name)) as last, 
-									class_id, birthday, sex, phone, Email, district_id 
+									class_id, birthday, sex, phone, Email,img, district_id 
 									FROM cuu_sv WHERE student_id='$id_active'");
 
 	$temp = mysqli_fetch_array ($tb_sv);
@@ -13,6 +13,7 @@
 	$birthday = date_format(date_create($last_birthday),"d/m/Y");//
 	$phone = $temp['phone']; //
 	$Email = $temp['Email']; //
+	$img = $temp['img'];//
 	if ($temp['sex']  ==  '1') 	$sex = 'Nam';
 	else $sex = 'Nữ';
 	//

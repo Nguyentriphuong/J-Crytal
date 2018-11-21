@@ -17,7 +17,7 @@
 	<div class="card">
 		<div class="card-header">
 			<!-- <img src="img/user.jpg" alt=""> -->
-			<div class="cover" style="background-image: url(img/user.jpg);"></div>
+			<div class="cover" style="background-image: url( <?php echo "$img"; ?>);"></div>
 			
 			<div class="menu">
 				<label for="file"> </label><i class="fa fa-pencil-square-o" aria-hidden="true" id="file"></i>
