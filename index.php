@@ -227,7 +227,7 @@
 					options: {
 						title:{
 							display: true,
-							text: 'Biểu đồ hình thức công ti đang làm viêc',
+							// text: 'Biểu đồ hình thức công ti đang làm viêc',
 							fontSize: 25,
 							position : 'bottom'
 						},
@@ -307,7 +307,7 @@
 					options: {
 						title:{
 							display: true,
-							text: 'Biểu đồ làm đúng ngành',
+							// text: 'Biểu đồ làm đúng ngành',
 							fontSize: 25,
 							position : 'bottom'
 						},
@@ -395,7 +395,7 @@
 					options: {
 						title:{
 							display: true,
-							text: 'Biểu đồ lương của cựu sinh viên theo lớp',
+							// text: 'Biểu đồ lương của cựu sinh viên theo lớp',
 							fontSize: 25,
 							position : 'bottom'
 						},
@@ -483,7 +483,7 @@
 					options: {
 						title:{
 							display: true,
-							text: 'Biểu đồ lương của cựu sinh viên theo khóa học',
+							// text: 'Biểu đồ lương của cựu sinh viên theo khóa học',
 							fontSize: 25,
 							position : 'bottom'
 						},

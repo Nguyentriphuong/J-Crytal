@@ -177,7 +177,7 @@ input#search,input#timkiem {
     height: 600px;
     position: relative;
     left: 50%;
-    top: 45%;
+    /*top: 0%;*/
     background: #f1f1f1;
     transform: translate(-50%,-50%);
     overflow: auto;
