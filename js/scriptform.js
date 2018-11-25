@@ -3,20 +3,8 @@ $(document).ready(function(){
 		var name = $("#name").val();
 
 		var d_b = $("#d_b").val();
-		if ($('#male').checked) {
-		  	var sex = $('#male').val();
-		}
-		else if($('#female').checked){
-		    var sex = $('#female').val();
-		} 
-		else var sex = '';
-		if ($('#yes').checked) {
-		  	var true_work = $('#yes').val();
-		}
-		else if($('#no').checked){
-		    var true_work = $('#no').val();
-		} 
-		else var true_work = '';
+		var sex = $('input[name=sex]:checked').val();
+		var true_work = $('input[name=Y_or_N]:checked').val();
 		var phone = $("#phone").val();
 		var email = $("#email").val();
 		var province = $("#province").val();

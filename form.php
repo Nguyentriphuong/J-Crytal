@@ -188,7 +188,7 @@
 		<form action="" method="POST" enctype="multipart/form-data">
 			<label for="img">Ảnh</label>: <input type="file" id="img" name="img" value='<?php echo "$img" ?>'>
 			<span class="erorr" id="erorr-img"><br></span>
-			<input type="submit" name="submit" value="Cập nhập">
+			<input type="submit" name="Submit" value="Cập nhập">
 		</form>
 		</div>
 		<div id="ttht">
@@ -236,7 +236,7 @@
 	<!-- </form> -->
 	</div>
 	<?php 
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['Submit'])) {
 			# code...
 				// lấy tên file upload
 			echo "co chay";

@@ -4,84 +4,82 @@
 	<meta charset="UTF-8">
 	<title>Register</title>
 	<link rel="stylesheet" href="css/login.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<div class="login-box">
-		<form action="" method="POST">
+		<!-- <form action="" method="POST"> -->
 			<h1>Register Here</h1>
 			<div class="textbox">
 				<i class="fa fa-user" aria-hidden = "true"></i>
-				<input type="text" placeholder="Username or Email" name= "name" >
+				<input type="text" placeholder="Username or Email" name= "name" id="user" onkeyup="javascript:DoKeyup(event, this, 'password');" >
 			</div>
 			<div class="textbox" >
 				<i class="fa fa-lock" aria-hidden = "true"></i>
-				<input type="password" placeholder="Password" name= "password" >
+				<input type="password" placeholder="Password" name= "password" id="password" onkeyup="javascript:DoKeyup(event, this, 'repassword');" >
 			</div>
 			<div class="textbox" >
 				<i class="fa fa-repeat" aria-hidden="true" id="re_p"></i>
-				<input type="password" placeholder="Re-enter Password" name= "repassword" >
+				<input type="password" placeholder="Re-enter Password" name= "repassword" id="repassword" onkeyup="javascript:DoKeyup(event, this, 'active');" >
 			</div>
 			<div class="textbox" >
 				<i class="fa fa-ticket" aria-hidden="true"></i>
-				<input type="password" placeholder="Active Code" name= "repassword" >
+				<input type="text" placeholder="Active Code" name= "active" id="active" >
 			</div>
 
-			<input class="btn" type="submit" name="submit" value="Sign in">
-			<span id="w_mk2" style="display: none;">Tài khoản đã tồn tại</span>
-		</form>
+			<input class="btn" type="button" name="register" id="register" value="Sign in" >
+			<span id="w_mk" style="display: none; color: chartreuse;">Lỗi khi nhập lại mật khẩu</span>
+			<span id="w_mk2" style="display: none;color: chartreuse;">Mã active của bạn không đúng, không thể tạo tài khoản</span>
+		<!-- </form> -->
 		
 	</div>
-	<?php 
-
-	$name = isset($_POST['name']) ? $_POST['name'] : '';
-	$password = isset($_POST['password']) ? $_POST['password'] : '';
-	include('connect.php');
-	if (isset($_POST['submit'])) {
-		# code...
-		
-		$name = mysqli_real_escape_string($link, $name);
-		$password = mysqli_real_escape_string($link, $password);
-		$password = md5($password); //ma hoa du lieu
-		$sql = " SELECT * FROM  account WHERE name = '$name' AND password = '$password'";
-		$query = mysqli_query($link,$sql);
-		$num_row =  mysqli_num_rows($query);
-		if ($num_row != 0) {
-			// phần không thể tạo vì tồn tại account
-			echo "<script>";   
-			echo "document.getElementById('w_mk2').style.display='';";
-			echo "</script>";
-
-		}
-		
-		else 
-		{	
-			// phần có thể đăng ký
-			echo "<script>";   
-			echo "document.getElementById('w_mk2').style.display='none';";
-			echo "</script>";
-			//
-			$s = "SELECT * FROM cuu_sv ORDER BY student_id DESC LIMIT 1";
-			$q1 = mysqli_query($link,$s);
-			$r = mysqli_fetch_array ($q1);
-			$stt1 = $r['student_id'] + 1;
-			echo "$stt1";
-			$sql1 = "INSERT INTO cuu_sv(student_id) VALUES ('$stt1')";
-			$query1 = mysqli_query($link,$sql1);
-			//
-			$s = "SELECT * FROM account ORDER BY id DESC LIMIT 1";
-			$q1 = mysqli_query($link,$s);
-			$r = mysqli_fetch_array ($q1);
-			$stt2 = $r['student_id'] + 1;
-			$sql2 = "INSERT INTO account(id,name,password,student_id,active) VALUES ('$stt2','$name', '$password','$stt1','1');";
-			$query2 = mysqli_query($link,$sql2);
-			//
-			echo "<script>";
-			echo 'myWindow = window.open("index.php", "_self");';
-			echo "</script>";
-		}
-		
-	}
 	
-	?>
+	<script>
+		$(document).ready(function() {
+			$('#register').click(function(event) {
+				/* Act on the event */
+				var user = $("#user").val();
+				var password = $("#password").val();
+				var repassword = $("#repassword").val();
+				var active = $("#active").val();
+				// alert("co chay "+ user + password + repassword + active);
+				var dataString = 'user=' + user+'&password='+ password;
+				if(user == '' || password == '' || repassword == '' ||  active == ''){
+					alert("Bạn chưa nhập đủ thông tin!!!");
+				} 
+				else if (password != repassword) {
+					$("#repassword").val("");
+					$("#password").val("");
+					document.getElementById('w_mk').style.display='';
+					document.getElementById('w_mk2').style.display='none';
+					document.getElementById('password').focus();
+
+				}
+				else if(active != '1abfbae9bb8234df2886c310d070370d'){
+					document.getElementById('w_mk').style.display='none';
+					document.getElementById('w_mk2').style.display='';
+					document.getElementById('active').focus();
+				}
+				else {
+					// AJAX Code To Submit Form.
+					$.ajax({
+					type: "POST",
+					url: "ajaxregister.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						
+						if (result != 'Tài khoản đã tồn tại') {myWindow = window.open("form.php", "_self");} 
+						else {alert(result);}
+						}
+					});
+					// 
+				}
+				return false;
+			});
+		});
+
+	</script>
+	<script src="js/scriptform.js"></script>
 </body>
 </html>

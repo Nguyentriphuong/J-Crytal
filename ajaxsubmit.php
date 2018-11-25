@@ -159,6 +159,7 @@ $sql1 = " SELECT * FROM  khoa WHERE course_name LIKE '$course'";
 				}*/
 				
 				// thêm sv 
+
 				$tb_sv = "UPDATE cuu_sv SET name = '$name', class_id = '$id_class', birthday = '$d_b', sex = '$sex', phone = '$phone', Email = '$email' ,district_id = '$district' WHERE cuu_sv.student_id = '$id_active'";
 				$query7 = mysqli_query($link,$tb_sv);
 echo "Form Submitted Succesfully";
