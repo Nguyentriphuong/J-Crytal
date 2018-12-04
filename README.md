@@ -7,4 +7,4 @@
 ---
 **3. Chạy ứng dụng trên trình duyệt đường dẫn localhost đên file index.php để bắt đầu**
 ---
-* Lưu ý: tất cả tài khoản trong khi đăng nhập hiện tại có mật khẩu là 'kaneki' *
+* Lưu ý: tất cả tài khoản trong khi đăng nhập hiện tại có mật khẩu là 'kaneki' 
