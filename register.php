@@ -55,7 +55,7 @@
 					document.getElementById('password').focus();
 
 				}
-				else if(active != '1abfbae9bb8234df2886c310d070370d'){
+				else if(active != '12345678'){
 					document.getElementById('w_mk').style.display='none';
 					document.getElementById('w_mk2').style.display='';
 					document.getElementById('active').focus();

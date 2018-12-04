@@ -42,8 +42,16 @@
 			//echo "Bạn đăng nhập thành công $num_row";
 			$q = mysqli_query($link,"UPDATE account SET active = '1' WHERE account.id = '$account_id'");
 			echo "<script>"; 
-			echo 'myWindow = window.open("index.php", "_self");';
+			if ($account_id == '1') {
+				# code...
+				echo 'myWindow = window.open("admin.php", "_self");';
+			} else {
+				# code...
+				echo 'myWindow = window.open("index.php", "_self");';
+				
+			}
 			echo "</script>";
+			
 
 		}
 		

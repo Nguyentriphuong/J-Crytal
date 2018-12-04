@@ -97,14 +97,14 @@ $sql1 = " SELECT * FROM  khoa WHERE course_name LIKE '$course'";
 	                $r4 = mysqli_fetch_array($query4_id);
 	                $congtacid = $r4['congtacid'] +1 ;
 					$tb_ct = "INSERT INTO congtac (congtacid,student_id, office_id, time_begin, time_end, position, salary, true_work) VALUES ('$congtacid','$id_active', '$id_congti', '$time_begin', '$time_end', '$pos', '$salary', '$true_work')";
-					$query4 = mysqli_query($link,$tb_ct);
+					$query4a = mysqli_query($link,$tb_ct);
 				}
-				
 				else{
 					// tồn tại rồi thì update
-					
-					$tb_ct = "UPDATE congtac SET office_id = '$id_congti', time_begin = '$time_begin', time_end = '$time_end', position = '$pos', salary = '$salary', true_work = '$true_work' WHERE congtac.office_id = '$id_congti')";
-					$query4 = mysqli_query($link,$tb_ct);
+
+					$tb_ct = "UPDATE congtac SET office_id = '$id_congti', time_begin = '$time_begin', time_end = '$time_end', position = '$pos', salary = '$salary', true_work = '$true_work' WHERE congtac.office_id = '$id_congti'";
+					echo "$tb_ct";
+					$query4b = mysqli_query($link,$tb_ct);
 				}
 	
 				// lấy id của district
@@ -114,49 +114,6 @@ $sql1 = " SELECT * FROM  khoa WHERE course_name LIKE '$course'";
 				$query6 = mysqli_query($link,$tb_lop);
 				$temp_array =  mysqli_fetch_array($query6);
 				$id_class = $temp_array['class_id'];
-				/*// lấy tên file upload
-				$image=$_FILES['img']['name'];
-				// Nếu nó không rỗng
-				if ($image)
-				{
-					// Lấy tên gốc của file
-					// echo "co nha";
-					$image=$_FILES['img']['name'];
-					echo "$image <br>";
-					$filename = stripslashes($_FILES['img']['name']);
-					//Lấy phần mở rộng của file
-					$extension = getExtension($filename);
-					$extension = strtolower($extension);
-					// Nếu nó không phải là file hình thì sẽ thông báo lỗi
-					if (($extension != "jpg") && ($extension != "jpeg") && ($extension !=
-					"png") && ($extension != "gif"))
-					{
-						// xuất lỗi ra màn hình
-						erorr('img','Bạn nhập thiểu thông tin ở đây');
-						// echo '<h1>Đây không phải là file hình!</h1>';
-						$n=1;
-					}
-					else
-					{
-						// đặt tên mới cho file hình up lên
-						$image_name=$id_active.'.'.$extension;
-						//$image_name = 'tenmoi'.'.'.$extension;
-						// gán thêm cho file này đường dẫn
-						$newname="images/".$image_name;
-						$x = $_FILES['img']['tmp_name'];
-						// kiểm tra xem file hình này đã upload lên trước đó chưa
-						$copied = move_uploaded_file($_FILES['img']['tmp_name'], $newname);
-						if (!$copied)
-						{
-						// echo '<h1> File hình này đã tồn tại </h1>';
-						$n=1;
-						}
-						else{
-							$query7 =  mysqli_query($link, "UPDATE cuu_sv SET img = '$newname' WHERE cuu_sv.student_id = '$id_active' ");
-						}
-						
-					}
-				}*/
 				
 				// thêm sv 
 

@@ -22,9 +22,6 @@
 	<div class="wrapper">
 		<div class="nav">
 			<ul id="Login" style="display: none;">
-				<li class="myprofile">
-					My Profile
-				</li>
 				
 				<li>
 					<a  href="#tb">List Member</a>
@@ -32,8 +29,9 @@
 				<li>
 					<a  href="#chart">Chart</a>
 				</li>
-				
-				<li id="nothing" onclick="opennote();">Notification</li>
+				<li class="Note">
+					Create Notification
+				</li>
 				<li class="active" >
 
 				<form action="" method="post">
@@ -41,13 +39,6 @@
 				</form>
 				</li>
 				
-			</ul>
-			<ul id="unlogin" style="display: ">
-				<li><a  href="#tb">List Member</a></li>
-				<li><a  href="#chart">Chart</a></li>
-				<li class="active" >
-				Login
-				</li>
 			</ul>
 		</div>
 		
@@ -154,27 +145,17 @@
 		if (isset($_POST['logout'])) { 
 			$sql = "UPDATE account SET active = '0' WHERE account.active = '1'";
 			$query = mysqli_query($link,$sql);
+			echo "<script>";   
+			echo 'myWindow = window.open("index.php", "_self");';
+			echo "</script>";
 		}
-		 ?>
+	?>
 	<?php 
-		$n1 = mysqli_query ($link,"select * from account where active ='1' and id != '1'");
-		$m1 = mysqli_fetch_array ($n1);
-		if ($m1['active']) {
+		$n = mysqli_query ($link,"select * from account where active ='1'");
+		$m = mysqli_fetch_array ($n);
+		if ($m['active']) {
 			echo "<script>"; 
 			echo "document.getElementById('Login').style.display='';";
-			echo "document.getElementById('unlogin').style.display='none';";
-			echo "</script>";
-		}
-		$n2 = mysqli_query ($link,"SELECT sv.* FROM cuu_sv sv INNER JOIN account a ON sv.student_id = a.student_id WHERE a.active = 1 AND sv.message = 1");
-		$m2 = mysqli_fetch_array ($n2);
-		if ($m2['message']) {
-			echo "<script>"; 
-			echo "document.getElementById('nothing').style.color='red';";
-			echo "</script>";
-		}
-		else{
-			echo "<script>"; 
-			echo "document.getElementById('nothing').style.color='while';";
 			echo "</script>";
 		}
 	 ?>
@@ -521,10 +502,6 @@
 
 	</script>
 	<script>
-		function opennote(){
-			myWindow = window.open("message.php", "_self");
-
-		}
 		function getsearch() {
 			// body...
 			// $('#search').slideToggle();

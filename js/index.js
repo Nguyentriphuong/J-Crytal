@@ -19,7 +19,18 @@ $(document).ready(function() {
 		
 	});
 });
-
+$(document).ready(function() {
+	$('.nav .Note').click(function() {
+		/* Act on the event */
+		myWindow =  window.open("notification.php","_self");
+	});
+});
+$(document).ready(function() {
+	$('.nav .Home').click(function() {
+		/* Act on the event */
+		myWindow =  window.open("admin.php","_self");
+	});
+});
 $(document).ready(function() {
 	$('.nav .active').click(function(event) {
 		/* Act on the event */

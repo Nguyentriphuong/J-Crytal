@@ -239,7 +239,7 @@
 		if (isset($_POST['Submit'])) {
 			# code...
 				// lấy tên file upload
-			echo "co chay";
+
 				$image=$_FILES['img']['name'];
 				// Nếu nó không rỗng
 				if ($image)
@@ -247,7 +247,7 @@
 					// Lấy tên gốc của file
 					// echo "co nha";
 					$image=$_FILES['img']['name'];
-					echo "$image <br>";
+
 					$filename = stripslashes($_FILES['img']['name']);
 					//Lấy phần mở rộng của file
 					$extension = getExtension($filename);
